@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #fff;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        .post-details {
+            margin-top: 20px;
+            display: flex;
+        }
+        .post-image {
+            flex: 1;
+            margin-right: 20px;
+        }
+        .post-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+        .post-info {
+            flex: 2;
+        }
+        .post-info p {
+            margin-bottom: 10px;
+            color: #666;
+        }
+        .actions {
+            margin-top: 20px;
+            display: flex;
+            justify-content: flex-start;
+        }
+        .like-btn, .comment-btn {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 8px 16px;
+            margin-right: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .like-btn:hover, .comment-btn:hover {
+            background-color: #0056b3;
+        }
+        .botton{
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Post Details</h2>
+    <div th:each="post:${myPost}">
+        <div class="post-details" th:each="image : ${post.getImageList()}">
+            <div class="post-image">
+                <img th:src="${image.getImageUrl()}" alt="Post Image">
+            </div>
+            <div class="post-info">
+                <p><strong>Title:</strong> <span th:text="${post.getTittle()}"></span></p>
+                <p><strong>Description:</strong> <span th:text="${post.getDescription()}"></span></p>
+                <p><strong>Date:</strong> <span th:text="${post.getCratedAt()}"></span></p>
+                <div class="actions">
+                    <a th:href="@{/post/updateClick/{postId}(postId = ${post.id})}" role="button" class="ghost">Update</a>
+
+<!--                    <button class="like-btn">Like</button>-->
+                    <button class="comment-btn">Comment</button>
+
+                    <form th:action="@{/search/follow/{userId}(userId=${currentUser.getId()})}"
+                          th:method="get">
+                        <button type="submit" class="subscribe-btn">Like</button>
+                    </form>
+                </div>
+                <td>
+<!--                    <a th:href="@{/post/delete/{postId}(postId=${post.id})}" class="botton">Delete</a>-->
+<!--                    <a th:href="@{/post/update/{postId}(postid=${post.id})}" class="botton">Update</a>-->
+                </td>
+            </div>
+        </div>
+    </div>
+<!--    <button class="create-post-btn" onclick="location.href='/post/newPost'">Create New Post</button>-->
+</div>
+</body>
+</html>

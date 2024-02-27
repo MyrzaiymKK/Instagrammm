@@ -19,10 +19,13 @@ import java.util.List;
 public class Comment extends BaseEntity {
     private String comment;
     private LocalDate createdAt;
+
     @OneToMany (mappedBy = "comment")
     private List<Like> likeList;
+
     @ManyToOne
     private Post post;
+
     @ManyToOne
     private User user;
 

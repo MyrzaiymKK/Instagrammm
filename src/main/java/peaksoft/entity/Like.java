@@ -21,6 +21,9 @@ public class Like extends BaseEntity {
     private Comment comment;
     @ManyToOne
     private Post post;
-    @OneToOne (mappedBy = "like")
+    @OneToOne
     private User user;
+
+
+
 }

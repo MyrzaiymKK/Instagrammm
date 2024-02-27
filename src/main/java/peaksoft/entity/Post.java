@@ -7,6 +7,7 @@ import lombok.Setter;
 import peaksoft.forBaseId.BaseEntity;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -20,12 +21,24 @@ public class Post extends BaseEntity {
     private String tittle;
     private String description;
     private LocalDate cratedAt;
-    @OneToMany (mappedBy = "post")
+
+    @OneToMany (mappedBy = "post",cascade = CascadeType.PERSIST,fetch = FetchType.EAGER)
     private List<Image> imageList;
+
     @OneToMany (mappedBy = "post")
     private List<Like> likes;
+
     @OneToMany (mappedBy = "post")
     private List<Comment> comments;
+
     @ManyToOne
     private User user;
+
+    @Transient
+    private String imageUrl;
+
+    public void addImage(Image image){
+        if (imageList == null) imageList = new ArrayList<>();
+        imageList.add(image);
+    }
 }

@@ -17,7 +17,7 @@ import java.util.List;
         sequenceName = "images_seq" ,allocationSize = 1)
 public class Image extends BaseEntity {
     private String imageUrl;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private Post post;
     @OneToMany (mappedBy = "image")
     private List<User> users;

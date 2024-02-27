@@ -17,11 +17,11 @@ import java.util.List;
 @SequenceGenerator(name = "base_id_gen",
         sequenceName = "followers_seq" ,allocationSize = 1)
 public class Follower extends BaseEntity {
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     private List<Long> subscribers;
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     private List<Long> subscription;
-    @OneToOne
+    @OneToOne(mappedBy = "follower",cascade = {CascadeType.PERSIST})
     private User user;
 
 }

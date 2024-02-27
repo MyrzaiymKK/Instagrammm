@@ -1,9 +1,6 @@
 package peaksoft.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.SequenceGenerator;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -22,6 +19,7 @@ public class UserInfo extends BaseEntity {
     private String biography;
     private Gender gender;
     private String image;
-    @OneToOne
+
+    @OneToOne(mappedBy = "userInfo", cascade = CascadeType.PERSIST)
     private User user;
 }

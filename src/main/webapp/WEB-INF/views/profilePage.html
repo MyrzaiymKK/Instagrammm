@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fafafa;
+        }
+
+        .container {
+            display: flex;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .navigation {
+            width: 250px;
+            background-color: #f0f0f0;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .navigation h2 {
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+
+        .navigation ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .navigation li {
+            margin-bottom: 10px;
+        }
+
+        .navigation a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .navigation a:hover {
+            color: #666;
+        }
+
+        .profile {
+            flex-grow: 1;
+            margin-left: 20px;
+        }
+
+        .profile-header {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .profile-picture {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-right: 20px;
+        }
+
+        .profile-info {
+            flex-grow: 1;
+        }
+
+        .profile-info h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .profile-info p {
+            margin: 5px 0 0;
+            color: #666;
+        }
+
+        .profile-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .profile-stats div {
+            text-align: center;
+        }
+
+        .profile-stats h2 {
+            margin: 0;
+            font-size: 18px;
+        }
+
+        .profile-stats p {
+            color: #666;
+        }
+
+        .edit-profile-button {
+            text-align: center;
+        }
+
+        .edit-profile-button button {
+            padding: 10px 20px;
+            background-color: #3897f0;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .edit-profile-button button:hover {
+            background-color: #3578e5;
+        }
+
+        .posts {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .post img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .post p {
+            margin-top: 10px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+<!--<form th:method="POST" th:action="@{/user/userInfoFull}" th:object="${currentUser}">-->
+<div class="container">
+    <div class="navigation">
+        <h2>Instagram-Profile</h2>
+        <ul>
+            <a th:href="@{/user/home}">Home</a>
+
+            <a th:href="@{/user/search/{userId}(userId=${currentUser.id})}">Search</a>
+<!--            <li><a href="#"></a></li>-->
+            <li><a href="#">Messages</a></li>
+            <li><a href="#">Notifications</a></li>
+            <li><a href="#">Profile</a></li>
+        </ul>
+    </div>
+    <div class="profile" th:object="${currentUser}">
+        <div class="profile-header">
+            <img th:src="${currentUser.getUserInfo().getImage()}" alt="Profile Picture" class="profile-picture">
+            <div class="profile-info">
+                <h1 th:text="${currentUser.userName} "></h1>
+                <p th:text="${currentUser.getUserInfo().getBiography()}"></p>
+            </div>
+
+        </div>
+        <div class="profile-stats">
+            <div>
+                <h2>Posts</h2>
+                <p>100</p>
+            </div>
+            <div>
+                <h2>Followers</h2>
+                <p>1000</p>
+            </div>
+            <div>
+                <h2>Following</h2>
+                <p>500</p>
+            </div>
+        </div>
+<!--        <div class="posts" th:each="post : ${currentUser.getPosts()}">-->
+<!--            <div class="post">-->
+<!--                <div th:each="image : ${post.getImageList()}">-->
+<!--                    <img th:src="${image.getImageUrl()}" alt="Post Image">-->
+<!--                </div>-->
+<!--                <p th:text="${post.getTittle()}"></p>-->
+<!--                <p th:text="${post.getDescription()}"></p>-->
+<!--                <p th:text="${post.getCratedAt()}"></p>-->
+<!--            </div>-->
+<!--        </div>-->
+    </div>
+
+</div>
+<!--    </form>-->
+<div class="edit-profile-button">
+    <a th:href="@{/userInfo/update/{userInfoId}/{userId}(userInfoId=${currentUser.getUserInfo().getId()},userId=${currentUser.getId()})}" role="button" >
+        <button>Edite</button></a>
+</div>
+
+<div class="edit-profile-button">
+    <a th:href="@{/post/postClick/{userId}(userId=${currentUser.id})}" role="button" >
+        <button>Create new Post</button></a>
+</div>
+
+<div class="edit-profile-button">
+    <a th:href="@{/post/myPost/{userId}(userId=${currentUser.id})}" role="button" >
+        <button>Posts</button></a>
+</div>
+
+</body>
+</html>
+

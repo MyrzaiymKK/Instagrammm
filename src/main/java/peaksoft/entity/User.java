@@ -16,23 +16,29 @@ import java.util.List;
 @SequenceGenerator(name = "base_id_gen",
         sequenceName = "users_seq" ,allocationSize = 1)
 public class User extends BaseEntity {
-    @Column(unique = true)
+    @Column(unique = true,nullable = false)
     private String userName;
+    @Column(nullable = false)
     private String password;
-    @Column (unique = true)
+    @Column (unique = true,nullable = false)
     private String email;
     private String phoneNumber;
 
-    @OneToOne(mappedBy = "user")
+    @OneToOne(cascade = {CascadeType.PERSIST,CascadeType.REMOVE, CascadeType.MERGE})
     private Follower follower;
-    @OneToOne(mappedBy = "user")
+
+    @OneToOne(cascade = {CascadeType.PERSIST,CascadeType.REMOVE})
     private UserInfo userInfo;
-    @OneToMany (mappedBy = "user")
+
+    @OneToMany (mappedBy = "user",cascade = {CascadeType.PERSIST,CascadeType.REMOVE}, fetch = FetchType.EAGER)
     private List<Post> posts;
+
     @OneToMany (mappedBy = "user")
     private List<Comment> comments;
-    @OneToOne
+
+    @OneToOne(mappedBy = "user")
     private Like like;
+
     @ManyToOne
     private Image image;
 }
