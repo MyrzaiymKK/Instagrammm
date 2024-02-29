@@ -112,7 +112,7 @@
             <div class="action-buttons">
                 <form th:action="@{/search/follow/{userId}(userId=${currentUser.getId()})}"
                       th:method="get">
-                    <button type="submit" class="subscribe-btn">Subscribe</button>
+                    <button type="submit" class="subscribe-btn" >Subscribe</button>
                 </form>
 <!--                <a th:href="@{/search/follow/{userId}(userId=${currentUser.getId()})}"><button>Subscribe: </button></a>-->
                 <button>Message</button>
@@ -124,12 +124,10 @@
                     <button>Posts</button></a>
             </div>
             <div>
-                <h2>Followers</h2>
-                <p>1000</p>
+                <h2>Followers: <span th:text="${currentUser.getFollower().getSubscribers().size()}"></span></h2>
             </div>
             <div>
-                <h2>Following</h2>
-                <p>500</p>
+                <h2>Following: <span th:text="${currentUser.getFollower().getSubscription().size()}"></span></h2>
             </div>
         </div>
         <!-- Add other profile content such as posts, saved posts, etc. -->

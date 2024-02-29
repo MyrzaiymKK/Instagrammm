@@ -27,7 +27,7 @@ public class UserRepositoryImpl implements UserRepository {
     @Override
     public User signIn(String userName, String password){
         for (User user : getAllUsers()) {
-            if(user.getUserName().equals(userName) && user.getPassword().equals(password)){
+            if(user.getUserName().equalsIgnoreCase(userName) && user.getPassword().equals(password)){
                 return user;
             }
         }

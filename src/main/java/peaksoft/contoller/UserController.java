@@ -49,7 +49,7 @@ public class UserController {
     }
     @GetMapping("/profile")                    //homePage den profilege otuu uchun
     public String profile(Model model){
-       model.addAttribute("currentUser", currentUser);
+       model.addAttribute("currentUser", userService.findUserById(currentUser.getId()));
        model.addAttribute("currUserId", currentUser.getId());
        return "profilePage";
     }
@@ -85,15 +85,6 @@ public class UserController {
         }
     }
 
-//
-//    @GetMapping("/searchClick")
-//    public String searchUser() {
-//       return "/profSearchUser";
-//    }
-//
-//    @PostMapping("/userProf")
-//    public String user(){
-//       return "/profSearchUser";
-//    }
+
 
 }

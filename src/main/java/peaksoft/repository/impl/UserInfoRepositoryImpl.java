@@ -27,7 +27,7 @@ public class UserInfoRepositoryImpl  implements UserInfoRepository {
         currentUser.setFullName(userInfo.getFullName());
         currentUser.setGender(userInfo.getGender());
         currentUser.setImage(userInfo.getImage());
-        entityManager.merge(userInfo);
+        entityManager.merge(currentUser);
         return userInfo;
     }
 }

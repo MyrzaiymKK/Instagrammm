@@ -25,8 +25,8 @@ public class Post extends BaseEntity {
     @OneToMany (mappedBy = "post",cascade = CascadeType.PERSIST,fetch = FetchType.EAGER)
     private List<Image> imageList;
 
-    @OneToMany (mappedBy = "post")
-    private List<Like> likes;
+    @OneToOne (mappedBy = "post")
+    private Like like;
 
     @OneToMany (mappedBy = "post")
     private List<Comment> comments;

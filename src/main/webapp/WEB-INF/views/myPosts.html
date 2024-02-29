@@ -85,11 +85,15 @@
 
 <!--                    <button class="like-btn">Like</button>-->
                     <button class="comment-btn">Comment</button>
-
-                    <form th:action="@{/search/follow/{userId}(userId=${currentUser.getId()})}"
-                          th:method="get">
-                        <button type="submit" class="subscribe-btn">Like</button>
+                    <form th:href="@{/like/likeClick/{userId}/{postId}(userId=${userId},postId=${post.getId()})}" role="button" class="ghost">
+                        <button>like</button>
                     </form>
+
+<!--                    <button type="submit" class="subscribe-btn">Like</button>-->
+<!--                    <form th:action="@{/search/follow/{userId}(userId=${currentUser.getId()})}"-->
+<!--                          th:method="get">-->
+
+
                 </div>
                 <td>
 <!--                    <a th:href="@{/post/delete/{postId}(postId=${post.id})}" class="botton">Delete</a>-->

@@ -16,11 +16,11 @@ import java.util.List;
 @SequenceGenerator(name = "base_id_gen",
         sequenceName = "users_seq" ,allocationSize = 1)
 public class User extends BaseEntity {
-    @Column(unique = true,nullable = false)
+    @Column(unique = true)
     private String userName;
     @Column(nullable = false)
     private String password;
-    @Column (unique = true,nullable = false)
+    @Column (unique = true)
     private String email;
     private String phoneNumber;
 

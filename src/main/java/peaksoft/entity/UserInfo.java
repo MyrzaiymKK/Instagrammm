@@ -17,6 +17,7 @@ import peaksoft.forBaseId.BaseEntity;
 public class UserInfo extends BaseEntity {
     private String fullName;
     private String biography;
+    @Enumerated(EnumType.STRING)
     private Gender gender;
     private String image;
 

@@ -6,6 +6,7 @@ import jakarta.persistence.PersistenceContext;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+import peaksoft.entity.Like;
 import peaksoft.entity.Post;
 import peaksoft.entity.User;
 import peaksoft.repository.PostRepository;
@@ -27,8 +28,8 @@ public class PostRepositoryImpl  implements PostRepository {
         User user = entityManager.find(User.class, userId);
         post.setUser(user);
         post.setCratedAt(LocalDate.now());
-        entityManager.persist(post);
 
+        entityManager.persist(post);
         return post;
     }
 

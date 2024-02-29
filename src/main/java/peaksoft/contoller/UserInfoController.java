@@ -27,7 +27,8 @@ public class UserInfoController {
 
     @PostMapping("/fullInfo/{userInfoId}/{userId}")
     public String fullInfo(@ModelAttribute("userInfo") UserInfo userInfo,
-                           @PathVariable("userInfoId") Long userInfoId
+                           @PathVariable("userInfoId") Long userInfoId,
+                           @PathVariable Long userId
                          ){
         userInfoService.update(userInfoId, userInfo);
         return "redirect:/user/profile";

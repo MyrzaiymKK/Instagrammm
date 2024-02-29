@@ -3,7 +3,9 @@ package peaksoft.service.impl;
 import jakarta.persistence.PersistenceContext;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import peaksoft.contoller.UserController;
 import peaksoft.entity.Image;
+import peaksoft.entity.Like;
 import peaksoft.entity.Post;
 import peaksoft.repository.PostRepository;
 import peaksoft.service.PostService;
@@ -22,11 +24,16 @@ public class PostServiceImpl implements PostService {
     @Override
     public void savePost(Long userId, Post post) {
 
+        Like like = new Like();
+        like.setPost(post);
+        post.setLike(like);
+
         String imageUrl = post.getImageUrl();
         Image image = new Image();
         image.setPost(post);
         image.setImageUrl(imageUrl);
         post.addImage(image);
+        UserController.currentUser.getPosts().add(post);
         postRepository.savePost(userId,post);
     }
 
@@ -37,6 +44,7 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public List<Post> getUserPost(Long userId) {
+
         return  postRepository.getUserPost(userId);
 
     }

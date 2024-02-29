@@ -169,16 +169,13 @@
         </div>
         <div class="profile-stats">
             <div>
-                <h2>Posts</h2>
-                <p>100</p>
+                <h2>Posts: <span th:text="${currentUser.getPosts().size()}"></span></h2>
             </div>
             <div>
-                <h2>Followers</h2>
-                <p>1000</p>
+                <h2>Followers: <span th:text="${currentUser.getFollower().getSubscribers().size()}"></span></h2>
             </div>
             <div>
-                <h2>Following</h2>
-                <p>500</p>
+                <h2>Following: <span th:text="${currentUser.getFollower().getSubscription().size()}"></span></h2>
             </div>
         </div>
 <!--        <div class="posts" th:each="post : ${currentUser.getPosts()}">-->
